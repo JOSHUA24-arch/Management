@@ -1,52 +1,50 @@
-<!DOCTYPE html>
+{% load static %}
 <html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Portifolio construction</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">My Website</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+  <div class="container">
+    <body class="body-b">
+      <h1 class="text-center">Calculate Pension</h1>
 
-    </nav>
-    <section class="container mt-5">
-        <h1><b>Create Your First Wallet</b> </h1>
-        <p>Each Wallet Represent The Source Of Your Money</p>
-
-        <form id="myForm" onsubmit="return validateForm()">
-            <div class="form-group">
-                <label for="walletName">Wallet Name</label>
-                <input type="text" class="form-control" id="walletName" name="walletName" required>
-            </div>
-            <div class="form-group">
-                <label for="walletCurrency">Wallet Currency</label>
-                <select class="form-control" id="walletCurrency" name="walletCurrency">
-                    <option value="tzs">TZS</option>
-                    <option value="usd">USD</option>
-                    <option value="eur">EUR</option>
-                    <option value="gbp">GBP</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-danger">Continue</button>
-        </form>
-    </section>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-</body>
+      <form method="post" action="{% url 'customer:calculate_pension' %}" class="pension-form">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="salary">Salary:</label>
+          <input type="number" name="salary" class="form-control" required />
+        </div>
+        <div class="form-group">
+          <label for="contribution_rate">Contribution Rate (%):</label>
+          <input
+            type="number"
+            name="contribution_rate"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="years_until_retirement">Years Until Retirement:</label>
+          <input
+            type="number"
+            name="years_until_retirement"
+            class="form-control"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Calculate</button>
+      </form>
+    </body>
+  </div>
 </html>
+
+

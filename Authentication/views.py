@@ -21,6 +21,8 @@ def login(request):
     return render(request, 'Authentication/login.html')
 
 
+
+
 def register1(request):
     username = request.POST.get('username')
     full_name = request.POST.get('full-name')
